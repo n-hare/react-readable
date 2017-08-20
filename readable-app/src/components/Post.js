@@ -6,7 +6,7 @@ const Post = (props) => {
     <article className='post__container'>
      <div>
         <h2>Title</h2>
-        <p>author</p>
+        <p>author– timestamp</p>
         <p>Body</p>
       </div>
       <ul className='post__controls'>
