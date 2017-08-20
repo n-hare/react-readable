@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Post from './components/Post'
+import CreatePost from './components/CreatePost'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <h1>Readable</h1>
-        <Route  exact path='/' component={Post} />
-        <Route  exact path='/:category' render={({match})=>(<h1>Categories {match.params.category}</h1>)} />
-        <Route  exact path='/:category/:post_id' render={({match})=>(<h1>Categories {match.params.post_id}</h1>)} />
+        <Route exact path="/" component={Post}/>
+        <Switch>
+          <Route exact path='/create' render={()=>(<CreatePost title='Create' />)} />
+          <Route exact path='/:category' component={Post} />
+        </Switch>
+        <Switch>
+          <Route exact path='/edit/:post_id' render={()=>(<CreatePost title='Edit' />)} />
+          <Route exact path='/:category/:post_id' render={({match})=>(<h1>Categories {match.params.post_id}</h1>)} />
+        </Switch>
       </div>
     );
   }
