@@ -18,3 +18,47 @@
   padding: 0.65rem 0.65rem 0.325rem;
   width: 66%;
 }
+
+/* Create Post Form Styles */
+
+.post__form {
+  display: flex;
+  flex-direction: column;
+  min-height: 60vh;
+  justify-content: space-between;
+  margin: auto;
+  width: 40vw;
+}
+
+.post__form input,
+.post__form select,
+.post__form textarea
+{
+  background-color: #FFF;
+  border: none;
+}
+.post__form__row {
+  padding-top: 0.65rem;
+}
+.post__form__row label {
+  display: block;
+}
+
+label + #postBody {
+  vertical-align: top;
+}
+
+#postBody {
+  min-height: 5rem;
+  min-width: 50vw;
+  max-width: 500px;
+}
+
+.button__submit{
+  background-color: #7dd488;
+  border: none;
+  color:#FFF;
+  font-weight: 900;
+  min-width: 50vw;
+  padding: 0.65rem 0;
+}

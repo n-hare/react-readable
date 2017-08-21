@@ -25,20 +25,30 @@ class CreatePost extends React.Component {
     return (
       <div>
         <h2>{this.props.title} Post</h2>
-        <form onSubmit={(evt) => this.submitPostForm(evt) } ref={(postForm) => {this.postForm = postForm}}>
-          <label>Title:&nbsp;</label>
-          <input type='text' name='title' />
-          <label>Post:&nbsp;</label>
-          <textarea name='body' ></textarea>
-          <label>Author:&nbsp;</label>
-          <input type='text' name='author' />
-          <label>Category:&nbsp;</label>
-          <select name='category' >
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-          </select>
-          <input type='submit' value={`${this.props.title} Post`} />
+        <form className='post__form' onSubmit={(evt) => this.submitPostForm(evt) } ref={(postForm) => {this.postForm = postForm}}>
+          <div className='post__form__row'>
+            <label htmlFor='title' >Title</label>
+            <input type='text' name='title' id='title' />
+          </div>
+          <div className='post__form__row'>
+            <label htmlFor='postBody' >Post</label>
+            <textarea name='body' id='postBody' ></textarea>
+          </div>
+          <div className='post__form__row'>
+            <label htmlFor='author' >Author</label>
+            <input type='text' name='author' id='author' />
+          </div>
+          <div className='post__form__row'>
+            <label htmlFor='category' >Category</label>
+            <select name='category' id='category' >
+              <option value='react'>react</option>
+              <option value='redux'>redux</option>
+              <option value='udacity'>udacity</option>
+            </select>
+          </div>
+          <div className='post__form__row'>
+            <input type='submit' className='button__submit' value={`${this.props.title} Post`} />
+          </div>
         </form>
       </div>
     )
