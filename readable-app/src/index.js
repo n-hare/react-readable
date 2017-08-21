@@ -13,7 +13,7 @@ import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
   <BrowserRouter history={ createBrowserHistory } >
     <Provider store={store} >
-      <App />
+      <App  store={store} />
     </Provider>
   </BrowserRouter>,
   document.getElementById('root'));

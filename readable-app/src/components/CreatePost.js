@@ -1,6 +1,8 @@
 import React from 'react';
 import shortid from 'shortid';
 
+import { createPost } from '../actions/index';
+
 class CreatePost extends React.Component {
 
   submitPostForm = (evt) =>{
@@ -18,6 +20,10 @@ class CreatePost extends React.Component {
       voteScore:  this.props.post || 0
     };
     this.postForm.reset();
+    console.log(this)
+    this.props.store.dispatch(createPost(postDetails));
+    this.props.push('/');
+
   }
 
 

@@ -30,7 +30,7 @@
   width: 40vw;
 }
 
-.post__form input,
+.post__form input[type='text'],
 .post__form select,
 .post__form textarea
 {
