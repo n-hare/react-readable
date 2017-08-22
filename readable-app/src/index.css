@@ -1,9 +1,6 @@
 @import url("normalize.css");
 @import url('https://fonts.googleapis.com/css?family=Nunito:300,900');
 
-html{
-  overflow: hidden;
-}
 body {
   background-attachment: fixed;
   background: #fc6072;
@@ -14,6 +11,7 @@ body {
   min-height: 100vh;
   padding: 0;
   width: 100%;
+  padding-top: 0.65rem;
 }
 
 h1,

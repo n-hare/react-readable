@@ -1,6 +1,6 @@
 import {CREATE_POST, DELETE_POST } from '../actions'
 
-function post(state = {}, action) {
+function posts(state = {}, action) {
   switch (action.type) {
     case CREATE_POST:
       return {
@@ -29,4 +29,4 @@ function post(state = {}, action) {
   }
 }
 
-export default post;
+export default posts;

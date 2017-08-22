@@ -1,6 +1,6 @@
 import {CREATE_COMMENT, DELETE_COMMENT } from '../actions'
 
-function post(state = {}, action) {
+function comments(state = {}, action) {
   switch (action.type) {
     case CREATE_COMMENT:
       return {
@@ -35,4 +35,4 @@ function post(state = {}, action) {
   }
 }
 
-export default post;
+export default comments;

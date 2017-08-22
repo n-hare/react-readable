@@ -1,18 +1,29 @@
 import React from 'react';
+import moment from 'moment';
+import { Link } from 'react-router-dom'
 import { TiMessage, TiPencil, TiTag} from 'react-icons/lib/ti'
 
-const Post = (props) => {
+const Post = ({post}) => {
   return (
     <article className='post__container'>
      <div>
-        <h2>Title</h2>
-        <p>author– timestamp</p>
-        <p>Body</p>
+        <h2>{post.title}</h2>
+        <p>{`${post.author}– ${moment(post.timestamp).fromNow()}`}</p>
+        <p>{post.body}</p>
       </div>
       <ul className='post__controls'>
-        <li><TiMessage /> Comments</li>
-        <li><TiTag /> Category</li>
-        <li><TiPencil /> Edit</li>
+        <li>
+          <TiMessage /> Comments
+        </li>
+        <li>
+          <TiTag />
+          <Link to={`/${post.category}`}>
+            {post.category}
+          </Link>
+        </li>
+        <li>
+          <TiPencil /> Edit
+        </li>
       </ul>
     </article>
   )

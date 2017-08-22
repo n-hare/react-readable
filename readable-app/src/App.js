@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import Post from './components/Post'
+import PostWrapper from './components/PostWrapper'
 import CreatePost from './components/CreatePost'
 
 class App extends Component {
@@ -10,10 +10,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Readable</h1>
-        <Route exact path="/" component={Post}/>
+        <Route exact path="/" component={PostWrapper}/>
         <Switch>
-          <Route exact path='/create' render={({history})=>(<CreatePost title='Create' store={this.props.store} push={history.push} />)} />
-          <Route exact path='/:category' component={Post} />
+          <Route exact path='/create' render={({history})=>(<CreatePost title='Create' push={history.push} />)} />
+          <Route exact path='/:category' component={PostWrapper} />
         </Switch>
         <Switch>
           <Route exact path='/edit/:post_id' render={({history})=>(<CreatePost title='Edit' />)} />
