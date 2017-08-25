@@ -3,17 +3,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Post from './Post';
+import Filters from './Filters'
 
 const PostWrapper = (props) => {
-  let { posts } = props;
+  let currentPosts  = props.posts;
   if (props.match.params.category){
-      posts = posts.filter((post) => (post.category === props.match.params.category) )
+      currentPosts = currentPosts.filter((post) => (post.category === props.match.params.category) )
   }
+
   return (
     <div>
-      <h2>Showing: {props.match.params.category ? props.match.params.category : 'all'}</h2>
-       {props.posts.length > 0 ? <button>All</button> posts.map(post => <Post key={post.id} post={post} />) : <h3>Be the first to post</h3>}
-      <Link to='/create' className='button__submit' >New Post</Link>
+      {currentPosts.length > 0 ? <Filters category={props.match.params.category || ''} /> : '' }
+      {currentPosts.length > 0 ? currentPosts.map(post => <Post key={post.id} post={post} />) : <h2>Be the first to post {props.match.params.category ? `in ${props.match.params.category}`: ''}</h2>}
+      <Link to='/create' className='button__submit btn' >New Post</Link>
     </div>
   )
 }
