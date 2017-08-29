@@ -6,7 +6,7 @@ import Post from './Post';
 import Filters from './Filters'
 
 const PostWrapper = (props) => {
-  let currentPosts  = [...props.posts];
+  let currentPosts  = [...props.posts].filter((post) => (post.deleted === false) );
   if (props.match.params.category){
       currentPosts = currentPosts.filter((post) => (post.category === props.match.params.category) )
   }
