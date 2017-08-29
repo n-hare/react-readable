@@ -33,6 +33,15 @@
   width: 66%;
 }
 
+.post__title{
+  text-decoration: none;
+  color: #000;
+}
+
+.post__title:hover{
+  color: #fc6072;
+}
+
 .post__controls {
   display: flex;
   justify-content: space-around;

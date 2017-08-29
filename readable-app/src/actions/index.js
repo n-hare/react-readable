@@ -1,5 +1,6 @@
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const CAST_VOTE = 'CAST_VOTE'
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
@@ -16,10 +17,18 @@ export function createPost({id, timestamp, title, body, author, category, voteSc
   }
 }
 
-export function deletePost({id}) {
+export function deletePost(id) {
   return {
     type: DELETE_POST,
     id
+  }
+}
+
+export function castVote(id, vote) {
+  return {
+    type: CAST_VOTE,
+    id,
+    vote
   }
 }
 
@@ -35,7 +44,7 @@ export function createComment({id, parentid, timestamp, body, author, voteScore 
   }
 }
 
-export function deleteComment({id}) {
+export function deleteComment(id) {
   return {
     type: DELETE_COMMENT,
     id

@@ -7,10 +7,12 @@ import Vote from './Vote'
 const Post = ({post}) => {
   return (
     <article className='post__container'>
-      <Vote voteScore={post.voteScore} />
+      <Vote voteScore={post.voteScore} post_id={post.id} />
       <div className='post__main'>
         <div>
-          <h2>{post.title}</h2>
+          <Link to={`/${post.category}/${post.id}`} className='post__title'>
+            <h2>{post.title}</h2>
+          </Link>
           <p>{`${post.author}– ${moment(post.timestamp).fromNow()}`}</p>
           <p>{post.body}</p>
         </div>
@@ -19,7 +21,7 @@ const Post = ({post}) => {
             <TiMessage /> Comments
           </li>
           <li>
-            <TiTag />
+            <TiTag />&nbsp;
             <Link to={`/${post.category}`}>
               {post.category}
             </Link>

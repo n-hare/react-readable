@@ -4,6 +4,7 @@ import './App.css';
 
 import PostWrapper from './components/PostWrapper'
 import CreatePost from './components/CreatePost'
+import SinglePostWrapper from './components/SinglePostWrapper'
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
         </Switch>
         <Switch>
           <Route exact path='/edit/:post_id' render={({history})=>(<CreatePost title='Edit' />)} />
-          <Route exact path='/:category/:post_id' render={({match})=>(<h1>Categories {match.params.post_id}</h1>)} />
+          <Route exact path='/:category/:post_id' render={({match})=>( <SinglePostWrapper post_id={match.params.post_id}/> )} />
         </Switch>
       </div>
     );
