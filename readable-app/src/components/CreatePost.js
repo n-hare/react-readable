@@ -5,19 +5,20 @@ import { createPost } from '../actions/index';
 import { connect } from 'react-redux';
 class CreatePost extends React.Component {
 
+
   submitPostForm = (evt) =>{
     evt.preventDefault();
     const { title, body, author, category } = this.postForm,
     timestamp = Date.now(),
     id = shortid.generate();
     const postDetails= {
-      id,
+      id: this.props.post.id || id,
       timestamp,
       title: title.value,
       body:body.value,
       author:author.value,
       category:category.value,
-      voteScore:  this.props.post || 0
+      voteScore:  this.props.post.voteScore || 0
     };
     this.postForm.reset();
     this.props.dispatch(createPost(postDetails));
@@ -25,26 +26,27 @@ class CreatePost extends React.Component {
   }
 
   render() {
+    const {post} = this.props
     return (
       <div>
         <h2>{this.props.title} Post</h2>
         <form className='post__form' onSubmit={(evt) => this.submitPostForm(evt) } ref={(postForm) => {this.postForm = postForm}}>
           <div className='post__form__row'>
-            <label htmlFor='title' >Title</label>
-            <input type='text' name='title' id='title' />
+            <label htmlFor='title'>Title</label>
+            <input type='text' name='title' id='title' defaultValue={post.title || ''}/>
           </div>
           <div className='post__form__row'>
             <label htmlFor='postBody' >Post</label>
-            <textarea name='body' id='postBody' ></textarea>
+            <textarea name='body' id='postBody' defaultValue={post.body || ''}></textarea>
           </div>
           <div className='post__form__row'>
             <label htmlFor='author' >Author</label>
-            <input type='text' name='author' id='author' />
+            <input type='text' name='author' id='author' defaultValue={post.author || ''}/>
           </div>
           <div className='post__form__row'>
             <label htmlFor='category' >Category</label>
-            <select name='category' id='category' >
-              <option value='react'>react</option>
+            <select name='category' id='category' defaultValue={post.category || 'react'}>
+              <option value='react' >react</option>
               <option value='redux'>redux</option>
               <option value='udacity'>udacity</option>
             </select>
@@ -58,5 +60,14 @@ class CreatePost extends React.Component {
   }
 }
 
-export default connect()(CreatePost);
+
+const mapStateToProps = (state, props) => {
+
+  return ({
+    post: state.posts[props.post_id] || '',
+    ...props
+  })
+}
+
+export default connect(mapStateToProps)(CreatePost);
 

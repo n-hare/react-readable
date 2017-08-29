@@ -17,7 +17,7 @@ class App extends Component {
           <Route exact path='/:category' component={PostWrapper} />
         </Switch>
         <Switch>
-          <Route exact path='/edit/:post_id' render={({history})=>(<CreatePost title='Edit' />)} />
+          <Route exact path='/edit/:post_id' render={({history, match})=>(<CreatePost title='Edit' post_id={match.params.post_id} push={history.push} />)} />
           <Route exact path='/:category/:post_id' render={({match})=>( <SinglePostWrapper post_id={match.params.post_id}/> )} />
         </Switch>
       </div>

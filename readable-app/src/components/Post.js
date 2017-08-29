@@ -27,7 +27,10 @@ const Post = ({post}) => {
             </Link>
           </li>
           <li>
-            <TiPencil /> Edit
+            <Link to={`/edit/${post.id}`}>
+              <TiPencil />
+              Edit
+            </Link>
           </li>
         </ul>
       </div>
