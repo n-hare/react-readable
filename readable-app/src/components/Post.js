@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { TiMessage, TiPencil, TiTag} from 'react-icons/lib/ti';
+import { TiMessage, TiPencil, TiTag, TiTrash} from 'react-icons/lib/ti';
 import Vote from './Vote'
 
 const Post = ({post}) => {
   return (
     <article className='post__container'>
-      <Vote voteScore={post.voteScore} post_id={post.id} />
+      <Vote voteScore={post.voteScore || 0} post_id={post.id} />
       <div className='post__main'>
         <div>
           <Link to={`/${post.category}/${post.id}`} className='post__title'>
@@ -18,7 +18,9 @@ const Post = ({post}) => {
         </div>
         <ul className='post__controls'>
           <li>
-            <TiMessage /> Comments
+            <Link to={`/${post.category}/${post.id}`}>
+              <TiMessage />&nbsp;Comments
+            </Link>
           </li>
           <li>
             <TiTag />&nbsp;
@@ -28,9 +30,13 @@ const Post = ({post}) => {
           </li>
           <li>
             <Link to={`/edit/${post.id}`}>
-              <TiPencil />
+              <TiPencil />&nbsp;
               Edit
             </Link>
+          </li>
+          <li onClick={()=>{console.log('Delete')} }>
+            <TiTrash />&nbsp;
+            Delete
           </li>
         </ul>
       </div>
