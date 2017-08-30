@@ -124,8 +124,8 @@ label + #postBody {
   font-weight: 900;
   min-width: 50vw;
   padding: 0.65rem 0;
-
 }
+
 .btn {
   border: none;
   color:#fff;
@@ -136,4 +136,14 @@ label + #postBody {
   text-decoration: none;
 }
 
+.post__controls li,
+.post__controls a {
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+}
+.post__controls li:hover,
+.post__controls a:hover{
+  color: #7dd488;
+}
 

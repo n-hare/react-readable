@@ -6,7 +6,7 @@ import Post from './Post';
 import Filters from './Filters'
 
 const PostWrapper = (props) => {
-  let currentPosts  = [...props.posts].filter((post) => (post.deleted === false) );
+  let currentPosts  = [...props.posts];
   if (props.match.params.category){
       currentPosts = currentPosts.filter((post) => (post.category === props.match.params.category) )
   }
@@ -23,7 +23,7 @@ const mapStateToProps = (state, props) => {
 
   const arrPosts = Object.keys(state.posts).reduce((accu, key)=>{
     return [...accu, state.posts[key]]
-  },[]);
+  },[]).filter((post) => (post.deleted === false) );
   return ({
     posts: arrPosts,
     ...props

@@ -46,9 +46,9 @@ class CreatePost extends React.Component {
           <div className='post__form__row'>
             <label htmlFor='category' >Category</label>
             <select name='category' id='category' defaultValue={post.category || 'react'}>
-              <option value='react' >react</option>
-              <option value='redux'>redux</option>
-              <option value='udacity'>udacity</option>
+              <option value='React' >react</option>
+              <option value='Redux'>redux</option>
+              <option value='Udacity'>udacity</option>
             </select>
           </div>
           <div className='post__form__row'>
