@@ -1,10 +1,12 @@
-import React from 'react';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-import { TiMessage, TiPencil, TiTag, TiTrash} from 'react-icons/lib/ti';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { TiMessage, TiPencil, TiTag, TiTrash} from 'react-icons/lib/ti'
+import moment from 'moment'
+import { deletePost, deleteParent } from '../actions/index';
 import Vote from './Vote'
 
-const Post = ({post}) => {
+const Post = ({dispatch, post}) => {
   return (
     <article className='post__container'>
       <Vote voteScore={post.voteScore || 0} post_id={post.id} />
@@ -34,7 +36,10 @@ const Post = ({post}) => {
               Edit
             </Link>
           </li>
-          <li onClick={()=>{console.log('Delete')} }>
+          <li onClick={()=>{
+            dispatch(deletePost(post.id))
+            dispatch(deleteParent(post.id))
+          } }>
             <TiTrash />&nbsp;
             Delete
           </li>
@@ -44,4 +49,4 @@ const Post = ({post}) => {
   )
 }
 
-export default Post;
+export default connect()(Post);

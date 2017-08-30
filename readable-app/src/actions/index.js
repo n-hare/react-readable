@@ -3,6 +3,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const CAST_VOTE = 'CAST_VOTE'
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const DELETE_PARENT = 'DELETE_PARENT';
 
 export function createPost({id, timestamp, title, body, author, category, voteScore = 0 }) {
   return {
@@ -48,5 +49,11 @@ export function deleteComment(id) {
   return {
     type: DELETE_COMMENT,
     id
+  }
+}
+export function deleteParent(parentid) {
+  return {
+    type: DELETE_PARENT,
+    parentid
   }
 }

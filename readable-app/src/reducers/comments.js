@@ -1,4 +1,4 @@
-import {CREATE_COMMENT, DELETE_COMMENT } from '../actions'
+import {CREATE_COMMENT, DELETE_COMMENT, DELETE_PARENT } from '../actions'
 
 function comments(state = {}, action) {
   switch (action.type) {
@@ -30,6 +30,21 @@ function comments(state = {}, action) {
           }
         }
       }
+    case DELETE_PARENT:
+      const comments = [action.parentid] in state ? Object.keys(state[action.parentid]) : 0
+      if (comments.length > 0) {
+        const updateChildComments = Object.keys(state[action.parentid]).reduce((prev, current)=>{
+          prev[current] = {...state[action.parentid][current], parentDeleted: true}
+          return prev
+        },{})
+        return {
+          ...state,
+          [action.parentid]: updateChildComments
+        }
+      }else{
+        return state
+      }
+
     default:
       return state
   }

@@ -141,6 +141,7 @@ label + #postBody {
   color: #000;
   cursor: pointer;
   text-decoration: none;
+  text-transform: capitalize;
 }
 .post__controls li:hover,
 .post__controls a:hover{
