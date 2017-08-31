@@ -1,8 +1,9 @@
 import React from 'react';
 import shortid from 'shortid';
-
-import { createPost } from '../actions/index';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux'
+import { createPost } from '../actions/index';
+
 class CreatePost extends React.Component {
 
 
@@ -22,7 +23,7 @@ class CreatePost extends React.Component {
     };
     this.postForm.reset();
     this.props.dispatch(createPost(postDetails));
-    this.props.push('/');
+    this.props.dispatch(push('/'))
   }
 
   render() {

@@ -6,7 +6,6 @@ import CreateComment from './CreateComment'
 import Comment from './Comment'
 
 const SinglePostWrapper = (props) => {
-
   return (
     <div>
       <Post key={props.post_id} post={props.post} />

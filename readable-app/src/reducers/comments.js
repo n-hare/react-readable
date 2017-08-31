@@ -44,10 +44,11 @@ function comments(state = {}, action) {
       }else{
         return state
       }
-
     default:
       return state
   }
 }
 
 export default comments;
+
+// Help with from Object.keys from https://stackoverflow.com/a/14810722

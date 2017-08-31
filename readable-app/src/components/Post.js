@@ -1,8 +1,9 @@
 import React from 'react'
+import moment from 'moment'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { push } from 'react-router-redux'
 import { TiMessage, TiPencil, TiTag, TiTrash} from 'react-icons/lib/ti'
-import moment from 'moment'
 import { deletePost, deleteParent } from '../actions/index';
 import Vote from './Vote'
 
@@ -39,6 +40,8 @@ const Post = ({dispatch, post}) => {
           <li onClick={()=>{
             dispatch(deletePost(post.id))
             dispatch(deleteParent(post.id))
+            dispatch(push('/'))
+
           } }>
             <TiTrash />&nbsp;
             Delete
