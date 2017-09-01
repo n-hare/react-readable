@@ -4,8 +4,6 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducers/root'
 
 export const history = createHistory()
-console.log(history)
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const middleware = routerMiddleware(history)
 const store = createStore(

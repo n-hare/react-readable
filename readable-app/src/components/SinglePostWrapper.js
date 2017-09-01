@@ -10,8 +10,8 @@ const SinglePostWrapper = (props) => {
     <div>
       <Post key={props.post_id} post={props.post} />
       <Link to='/' className='btn' >Back Home</Link>
-      <Comment />
-      <CreateComment />
+      <h2>Comments</h2>
+      <CreateComment parentid={props.post_id}/>
     </div>
   )
 }

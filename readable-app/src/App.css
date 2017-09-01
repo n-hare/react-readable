@@ -110,7 +110,8 @@ label + #postBody {
   vertical-align: top;
 }
 
-#postBody {
+#postBody,
+#commentBody {
   min-height: 5rem;
   min-width: 50vw;
   max-width: 500px;
@@ -124,6 +125,7 @@ label + #postBody {
   font-weight: 900;
   min-width: 50vw;
   padding: 0.65rem 0;
+  margin-bottom: 1.3rem;
 }
 
 .btn {
