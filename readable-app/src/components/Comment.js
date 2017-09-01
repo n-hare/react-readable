@@ -1,11 +1,36 @@
 import React from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { TiPencil, TiTrash} from 'react-icons/lib/ti'
+
+import Vote from './Vote'
 
 const Comment = (props) => {
   return (
-    <div>
-     <h2>Comment</h2>
-    </div>
+    <article className='post__container'>
+      <Vote voteScore={props.comment.voteScore} comment_id={props.comment.id} />
+      <div className='post__main'>
+        <div>
+          <h3>{props.comment.title} –<span>{moment(props.comment.timestamp).fromNow()}</span></h3>
+          <p>{props.comment.body}</p>
+        </div>
+        <ul className='post__controls'>
+          <li>
+            <Link to={'#commentForm'}>
+              <TiPencil />&nbsp;
+              Edit
+            </Link>
+          </li>
+          <li onClick={()=>{
+            console.log('delete comment')
+          }}>
+            <TiTrash />&nbsp;
+            Delete
+          </li>
+        </ul>
+      </div>
+    </article>
   )
 }
 
@@ -14,4 +39,4 @@ const Comment = (props) => {
     <p>{comment.body}</p>
 */
 
-export default Comment
+export default connect()(Comment)
