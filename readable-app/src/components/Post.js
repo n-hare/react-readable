@@ -7,7 +7,7 @@ import { TiMessage, TiPencil, TiTag, TiTrash} from 'react-icons/lib/ti'
 import { deletePost, deleteParent } from '../actions/index';
 import Vote from './Vote'
 
-const Post = ({dispatch, post}) => {
+const Post = ({dispatch, post, commentTotal}) => {
   return (
     <article className='post__container'>
       <Vote voteScore={post.voteScore || 0} post_id={post.id} />
@@ -22,7 +22,7 @@ const Post = ({dispatch, post}) => {
         <ul className='post__controls'>
           <li>
             <Link to={`/${post.category}/${post.id}`}>
-              <TiMessage />&nbsp;Comments
+              <TiMessage />&nbsp;{commentTotal === 1 ? `${commentTotal} Comment` : `${commentTotal} Comments` }
             </Link>
           </li>
           <li>
