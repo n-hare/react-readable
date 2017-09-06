@@ -1,9 +1,11 @@
-export const CREATE_POST = 'CREATE_POST';
-export const DELETE_POST = 'DELETE_POST';
+import { getData } from '../utils/apiHelpers'
+export const CREATE_POST = 'CREATE_POST'
+export const DELETE_POST = 'DELETE_POST'
 export const CAST_VOTE = 'CAST_VOTE'
-export const CREATE_COMMENT = 'CREATE_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const DELETE_PARENT = 'DELETE_PARENT';
+export const CREATE_COMMENT = 'CREATE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const DELETE_PARENT = 'DELETE_PARENT'
+export const CREATE_CATEGORY = 'CREATE_CATEGORY'
 
 export function createPost({id, timestamp, title, body, author, category, voteScore = 0 }) {
   return {
@@ -24,6 +26,11 @@ export function deletePost(id) {
     id
   }
 }
+
+export const getPosts = () => dispatch => (
+  getData()
+  .then(posts => posts.map(post=>dispatch(createPost(post))))
+)
 
 export function castVote(id, vote) {
   return {
@@ -57,3 +64,14 @@ export function deleteParent(parentid) {
     parentid
   }
 }
+
+export function createCategory(category) {
+  return {
+    type: CREATE_CATEGORY,
+    category
+  }
+}
+export const getCategories = () => dispatch => (
+  getData('/categories').then(({categories}) => dispatch(createCategory(categories)))
+)
+

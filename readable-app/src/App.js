@@ -6,7 +6,13 @@ import PostWrapper from './components/PostWrapper'
 import CreatePost from './components/CreatePost'
 import SinglePostWrapper from './components/SinglePostWrapper'
 
+import { connect } from 'react-redux';
+import { getCategories } from './actions/index';
+
 class App extends Component {
+  componentDidMount(){
+    this.props.dispatch(getCategories())
+  }
   render() {
     return (
       <div className="App">
@@ -25,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App)

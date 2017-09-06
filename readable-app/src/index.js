@@ -8,7 +8,7 @@ import App from './App'
 import store, { history } from './store'
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={ store }>
     <ConnectedRouter history={ history }>
       <App />
     </ConnectedRouter>

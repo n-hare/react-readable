@@ -6,7 +6,7 @@ const headers = new Headers({
   'Authorization': 'redux0910'
 })
 
-export const getData = (parth = '/posts') => (
+export const getData = (path = '/posts') => (
     fetch(`${baseURL}${path}`, { headers })
     .then((res) => res.json())
 )
