@@ -46,7 +46,7 @@ const mapStateToProps = (state, props) => {
     // },{})
     return ({
       categories: [{name: 'all', path: ''}, ...state.categories],
-      posts: Object.keys(state.posts).map(key=>state.posts[key]),
+      posts: Object.keys(state.posts).map(key=>state.posts[key]).filter(post => !post.deleted),
       ...props
     })
   }

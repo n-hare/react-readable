@@ -12,7 +12,7 @@ export const getData = (path = '/posts') => (
     .then((res) => res.json())
 )
 
-export const postData = (path = '/posts', data) => (
+export const postData = (path, data) => (
   fetch(`${baseURL}${path}`,
     {
       headers: {
@@ -24,6 +24,14 @@ export const postData = (path = '/posts', data) => (
       body: data
     })
 )
+
+export const deleteData = (path) => (
+  fetch(`${baseURL}${path}`, {
+    method: 'DELETE',
+    headers
+  })
+)
+
 
 
 

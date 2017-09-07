@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { push } from 'react-router-redux'
 import { TiMessage, TiPencil, TiTag, TiTrash} from 'react-icons/lib/ti'
-import { deletePost, deleteParent } from '../actions/index';
+import { deletePostAPI } from '../actions/index';
 import Vote from './Vote'
 
 const Post = ({dispatch, post, commentTotal}) => {
@@ -38,8 +38,7 @@ const Post = ({dispatch, post, commentTotal}) => {
             </Link>
           </li>
           <li onClick={()=>{
-            dispatch(deletePost(post.id))
-            dispatch(deleteParent(post.id))
+            dispatch(deletePostAPI(post.id))
             dispatch(push('/'))
 
           } }>

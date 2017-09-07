@@ -13,7 +13,7 @@ function posts(state = {}, action) {
           author: action.author,
           category: action.category,
           voteScore: action.voteScore,
-          deleted: false
+          deleted: action.deleted || false
         }
       }
     case DELETE_POST:

@@ -1,4 +1,4 @@
-import { getData } from '../utils/apiHelpers'
+import { getData, deleteData } from '../utils/apiHelpers'
 export const CREATE_POST = 'CREATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const CAST_VOTE = 'CAST_VOTE'
@@ -7,7 +7,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const DELETE_PARENT = 'DELETE_PARENT'
 export const CREATE_CATEGORY = 'CREATE_CATEGORY'
 
-export function createPost({id, timestamp, title, body, author, category, voteScore = 0 }) {
+export function createPost({id, timestamp, title, body, author, category, voteScore = 0, deleted= false }) {
   return {
     type: CREATE_POST,
     id,
@@ -16,7 +16,8 @@ export function createPost({id, timestamp, title, body, author, category, voteSc
     body,
     author,
     category,
-    voteScore
+    voteScore,
+    deleted
   }
 }
 
@@ -26,6 +27,12 @@ export function deletePost(id) {
     id
   }
 }
+
+export const deletePostAPI = (id) => dispatch => (
+  deleteData(`/posts/${id}`)
+    .then(() => dispatch(deletePost(id)))
+    .then(() => dispatch(deleteParent(id)))
+)
 
 export const getPosts = (path = '/posts') => dispatch => (
   getData(path)

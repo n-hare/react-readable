@@ -19,7 +19,8 @@ class CreatePost extends React.Component {
       body:body.value,
       author:author.value,
       category:category.value,
-      voteScore:  this.props.post.voteScore || 0
+      voteScore:  this.props.post.voteScore || 0,
+      deleted: false
     };
     this.postForm.reset();
     postData('/posts', JSON.stringify(postDetails))
