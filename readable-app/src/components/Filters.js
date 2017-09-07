@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Filters = ({category}) => {
-   const categoryFilters = ['all', 'react', 'redux', 'udacity']
+const Filters = ({params, categories}) => {
   return (
     <div>
-      <h2>Showing: {category ? category : 'all'}</h2>
+      <h2>Showing: {params ? params : 'all'}</h2>
       <ul className='filter__row'>
-        {categoryFilters.map((filter, index) => {
+        {categories.map((filter, index) => {
           return(
             <li key={index}>
-              <Link to={filter === 'all' ? '/' : `/${filter}`} className='filter__link' >
-                {filter}
+              <Link to={`/${filter.path}`} className='filter__link'>
+                {filter.name}
               </Link>
             </li>
           )
@@ -20,5 +19,7 @@ const Filters = ({category}) => {
     </div>
   )
 }
+
+
 
 export default Filters

@@ -10,7 +10,7 @@ import store, { history } from './store'
 ReactDOM.render(
   <Provider store={ store }>
     <ConnectedRouter history={ history }>
-      <App />
+      <App dispatch={ store.dispatch }/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'));

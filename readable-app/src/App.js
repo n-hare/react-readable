@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import './App.css';
-
+import { getCategories } from './actions/index';
 import PostWrapper from './components/PostWrapper'
 import CreatePost from './components/CreatePost'
 import SinglePostWrapper from './components/SinglePostWrapper'
-
-import { connect } from 'react-redux';
-import { getCategories } from './actions/index';
 
 class App extends Component {
   componentDidMount(){
@@ -31,4 +28,5 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+export default App
+

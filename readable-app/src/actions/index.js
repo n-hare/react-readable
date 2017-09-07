@@ -27,8 +27,8 @@ export function deletePost(id) {
   }
 }
 
-export const getPosts = () => dispatch => (
-  getData()
+export const getPosts = (path = '/posts') => dispatch => (
+  getData(path)
   .then(posts => posts.map(post=>dispatch(createPost(post))))
 )
 
