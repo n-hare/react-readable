@@ -48,9 +48,7 @@ class CreatePost extends React.Component {
           <div className='post__form__row'>
             <label htmlFor='category' >Category</label>
             <select name='category' id='category' defaultValue={post.category || 'react'}>
-              <option value='react' >react</option>
-              <option value='redux'>redux</option>
-              <option value='udacity'>udacity</option>
+              {this.props.categories.map(cat => <option value={cat.name} key={cat.name} >{cat.name}</option>)}
             </select>
           </div>
           <div className='post__form__row'>
@@ -66,6 +64,7 @@ class CreatePost extends React.Component {
 const mapStateToProps = (state, props) => {
 
   return ({
+    categories: state.categories,
     post: state.posts[props.post_id] || '',
     ...props
   })
