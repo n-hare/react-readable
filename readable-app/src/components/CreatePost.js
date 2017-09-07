@@ -3,18 +3,18 @@ import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
 import { createPost } from '../actions/index';
+import { postData } from '../utils/apiHelpers'
 
 class CreatePost extends React.Component {
 
-
   submitPostForm = (evt) =>{
-    evt.preventDefault();
+    evt.preventDefault()
     const { title, body, author, category } = this.postForm,
     timestamp = Date.now(),
-    id = shortid.generate();
+    id = shortid.generate()
     const postDetails= {
       id: this.props.post.id || id,
-      timestamp,
+      timestamp:timestamp,
       title: title.value,
       body:body.value,
       author:author.value,
@@ -22,7 +22,8 @@ class CreatePost extends React.Component {
       voteScore:  this.props.post.voteScore || 0
     };
     this.postForm.reset();
-    this.props.dispatch(createPost(postDetails));
+    postData('/posts', JSON.stringify(postDetails))
+    this.props.dispatch(createPost(postDetails))
     this.props.dispatch(push('/'))
   }
 
