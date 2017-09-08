@@ -1,19 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { castVote } from '../actions/index'
+import { postVote } from '../actions/index'
 import { TiArrowSortedUp, TiArrowSortedDown } from 'react-icons/lib/ti'
-
-
-
 
 const Vote = (props) => {
   return (
     <div className='vote__wrapper' >
-      <TiArrowSortedUp className='vote__arrow vote__upArrow' onClick={ () => props.dispatch(castVote(props.post_id, 1)) }/>
+      <TiArrowSortedUp className='vote__arrow vote__upArrow' onClick={ () => props.dispatch(postVote(props.post_id, 1)) }/>
       <div>
         {props.voteScore}
       </div>
-      <TiArrowSortedDown className='vote__arrow vote__downArrow' onClick={ () => props.dispatch(castVote(props.post_id, -1)) }/>
+      <TiArrowSortedDown className='vote__arrow vote__downArrow' onClick={ () => props.dispatch(postVote(props.post_id, -1)) }/>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { getData, deleteData } from '../utils/apiHelpers'
+import { deleteData, getData, postData } from '../utils/apiHelpers'
 export const CREATE_POST = 'CREATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const CAST_VOTE = 'CAST_VOTE'
@@ -47,6 +47,14 @@ export function castVote(id, vote) {
   }
 }
 
+export const postVote = (id, vote) => dispatch => {
+  const option= {option: vote > 0 ? 'upVote' : 'downVote'}
+  return (
+    postData(`/posts/${id}`, JSON.stringify(option))
+    .then(dispatch(castVote(id, vote)))
+  )
+}
+
 export function createComment({id, parentid, timestamp, body, author, voteScore = 0 }) {
   return {
     type: CREATE_COMMENT,
@@ -65,6 +73,7 @@ export function deleteComment(id) {
     id
   }
 }
+
 export function deleteParent(parentid) {
   return {
     type: DELETE_PARENT,
@@ -78,6 +87,7 @@ export function createCategory(category) {
     category
   }
 }
+
 export const getCategories = () => dispatch => (
   getData('/categories').then(({categories}) => dispatch(createCategory(categories)))
 )

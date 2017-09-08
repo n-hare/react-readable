@@ -8,7 +8,7 @@ import { getPosts } from '../actions/index'
 
 class PostWrapper extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getPosts())
+    // this.props.dispatch(getPosts())
   }
 
   render() {
