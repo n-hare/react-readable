@@ -7,7 +7,7 @@ const Vote = (props) => {
   return (
     <div className='vote__wrapper' >
       <TiArrowSortedUp className='vote__arrow vote__upArrow' onClick={ () => props.dispatch(postVote(props.post_id, 1)) }/>
-      <div>
+      <div className='vote__score'>
         {props.voteScore}
       </div>
       <TiArrowSortedDown className='vote__arrow vote__downArrow' onClick={ () => props.dispatch(postVote(props.post_id, -1)) }/>

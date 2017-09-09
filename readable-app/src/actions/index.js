@@ -6,7 +6,9 @@ export const CREATE_COMMENT = 'CREATE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const DELETE_PARENT = 'DELETE_PARENT'
 export const CREATE_CATEGORY = 'CREATE_CATEGORY'
+export const SORT_BY = 'SORT_BY'
 
+//User Post Actions
 export function createPost({id, timestamp, title, body, author, category, voteScore = 0, deleted= false }) {
   return {
     type: CREATE_POST,
@@ -39,6 +41,7 @@ export const getPosts = (path = '/posts') => dispatch => (
   .then(posts => posts.map(post=>dispatch(createPost(post))))
 )
 
+//Vote Actions
 export function castVote(id, vote) {
   return {
     type: CAST_VOTE,
@@ -55,6 +58,7 @@ export const postVote = (id, vote) => dispatch => {
   )
 }
 
+//Comment Actions
 export function createComment({id, parentid, timestamp, body, author, voteScore = 0 }) {
   return {
     type: CREATE_COMMENT,
@@ -81,6 +85,7 @@ export function deleteParent(parentid) {
   }
 }
 
+//Category Actions
 export function createCategory(category) {
   return {
     type: CREATE_CATEGORY,
@@ -91,4 +96,9 @@ export function createCategory(category) {
 export const getCategories = () => dispatch => (
   getData('/categories').then(({categories}) => dispatch(createCategory(categories)))
 )
+
+//UI Actions
+export const updateUI = (ui, bool) => ( {type: SORT_BY, ui, bool} )
+
+
 
