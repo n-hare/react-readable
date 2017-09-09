@@ -9,10 +9,10 @@ import Vote from './Vote'
 const Comment = (props) => {
   return (
     <article className='post__container'>
-      <Vote voteScore={props.comment.voteScore} comment_id={props.comment.id} />
+      <Vote voteScore={props.comment.voteScore || 0} comment_id={props.comment.id} />
       <div className='post__main'>
         <div>
-          <h3>{props.comment.title} –<span>{moment(props.comment.timestamp).fromNow()}</span></h3>
+          <h3>{props.comment.author} –<span>{moment(props.comment.timestamp).fromNow()}</span></h3>
           <p>{props.comment.body}</p>
         </div>
         <ul className='post__controls'>
@@ -34,9 +34,6 @@ const Comment = (props) => {
   )
 }
 
-/*
-   <p>{`${comment.author}– ${moment(comment.timestamp).fromNow()}`}</p>
-    <p>{comment.body}</p>
-*/
+
 
 export default connect()(Comment)

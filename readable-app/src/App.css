@@ -183,7 +183,9 @@ label + #postBody {
   cursor: pointer;
   display: block;
   font-weight: 900;
+  margin-bottom: 0.65rem;
   min-width: 50vw;
+  outline: 0;
   padding: 0.65rem 0;
 }
 

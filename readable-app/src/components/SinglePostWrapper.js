@@ -16,10 +16,11 @@ class SinglePostWrapper extends React.Component {
     const {post} = this.props
     return (
       <div>
-        {post && !post.deleted ?  <Post key={this.props.post_id} post={this.props.post} commentTotal={this.props.commentTotal} /> : ''}
+        {post && !post.deleted ?  <Post key={this.props.post_id} post={this.props.post} /> : ''}
 
         <Link to='/' className='btn' >Back Home</Link>
-        <h2>Comments</h2>
+        <h2 id='commets'>Comments</h2>
+        { this.props.comments.length > 0 ? this.props.comments.map(comment => <Comment comment={comment} key={comment.id} />) : <h3>Be the first to comment!</h3>}
         <CreateComment parentid={this.props.post_id}/>
       </div>
     )
@@ -27,13 +28,14 @@ class SinglePostWrapper extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-
   return ({
     post: state.posts[props.post_id],
-    comments: state.comments[props.post_id],
-    commentTotal: props.post_id in state.comments ? Object.keys(state.comments[props.post_id]).length : 0,
+    comments: state.comments[props.post_id] ? Object.keys(state.comments[props.post_id])
+      .map(key=>state.comments[props.post_id][key])
+      .filter(comment => !comment.deleted && !comment.parentDeleted) : [] ,
     ...props
   })
 }
+
 
 export default connect(mapStateToProps)(SinglePostWrapper);

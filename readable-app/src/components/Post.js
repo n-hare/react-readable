@@ -21,7 +21,7 @@ const Post = ({dispatch, post, commentTotal}) => {
         </div>
         <ul className='post__controls'>
           <li>
-            <Link to={`/${post.category}/${post.id}`}>
+            <Link to={`/${post.category}/${post.id}#comments`}>
               <TiMessage />&nbsp;{commentTotal === 1 ? `${commentTotal} Comment` : `${commentTotal} Comments` }
             </Link>
           </li>
@@ -51,4 +51,12 @@ const Post = ({dispatch, post, commentTotal}) => {
   )
 }
 
-export default connect()(Post);
+const mapStateToProps = (state, props) => {
+  console.log(state.comments[props.post.id])
+  return ({
+    commentTotal: props.post.id in state.comments ? Object.keys(state.comments[props.post.id]).length : 0,
+    ...props
+  })
+}
+
+export default connect(mapStateToProps)(Post);

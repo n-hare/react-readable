@@ -19,7 +19,7 @@ class PostWrapper extends React.Component {
     return (
       <div>
         {posts.length > 0 || paramCategory ? <Filters params={ this.props.match.params.category || '' } categories={ this.props.categories } /> : '' }
-        {posts.length > 0 ? posts.map(post=><Post key={post.id} post={post} commentTotal={0} />) : <h2>Be the first to post{paramCategory ? ` in ${paramCategory}`: '' }!</h2>}
+        {posts.length > 0 ? posts.map(post=><Post key={post.id} post={post} />) : <h2>Be the first to post{paramCategory ? ` in ${paramCategory}`: '' }!</h2>}
         <Link to='/create' className='button__submit btn' >New Post</Link>
       </div>
     )
