@@ -13,33 +13,55 @@
 
 /* Filter Row Styles */
 .filter__header {
+  align-items: baseline;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
 }
 
 .sort__row {
   margin-right: 1.3rem;
+  align-items: baseline;
+  display: flex;
 
 }
 
-.sort__btn {
+.sort__arrow__wrapper {
+  align-self:  center;
+
+  padding: 1.3rem;
+}
+
+.sort__arrow__left,
+.sort__arrow__right
+{
   cursor: pointer;
-  display: inline-block;
-  font-weight: 900;
-  overflow: hidden;
-  border-radius: 0;
-  padding: 0.325rem;
-
-  width: 7vw;
+  transform-origin: center center;
+  transition: transform .8s cubic-bezier(.41,.01,.31,.91) 0.15s
 }
 
-.sort__btn:hover {
-  box-shadow: 0 0 0 #fff;
-  color: rgb(125, 212, 136);
-  outline: none !important;
-  outline-width: 0 !important;
-  overflow: hidden;
+.sort__arrow__left {
+  transform: rotate(180deg);
+}
+
+.sort__arrow__left:hover,
+.sort__arrow__left:active
+{
+  transform: rotate(0deg);
+}
+
+.sort__arrow__right {
+  transform: rotate(0deg);
+}
+
+.sort__arrow__right:hover,
+.sort__arrow__right:active
+ {
+  transform: rotate(180deg);
+}
+
+.sort__ui {
+  font-weight: 900;
+  min-width: 6vw;
 }
 
 .filter__row {
@@ -71,8 +93,8 @@
 }
 
 .post__title {
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 
 .post__title:hover {
@@ -161,13 +183,15 @@ label + #postBody {
   cursor: pointer;
   display: block;
   font-weight: 900;
-  padding: 0.65rem 0;
-  margin: 3rem auto 1.3rem;
   min-width: 50vw;
+  padding: 0.65rem 0;
 }
 
 .btn {
   color:#fff;
+  cursor: pointer;
+  display: block;
+  margin: 3rem auto 1.3rem;
   max-width: 25vw;
   text-align: center;
   text-decoration: none;
