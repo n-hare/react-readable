@@ -25,7 +25,7 @@ function comments(state = {}, action) {
         [action.parentid]: {
           ...state[action.parentid],
           [action.id]: {
-            ...state[action.id],
+            ...state[action.parentid][action.id],
             deleted: true
           }
         }
@@ -51,4 +51,4 @@ function comments(state = {}, action) {
 
 export default comments;
 
-// Help with from Object.keys from https://stackoverflow.com/a/14810722
+// Help with Object.keys from https://stackoverflow.com/a/14810722

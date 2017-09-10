@@ -52,9 +52,11 @@ const Post = ({dispatch, post, commentTotal}) => {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.comments[props.post.id])
+
   return ({
-    commentTotal: props.post.id in state.comments ? Object.keys(state.comments[props.post.id]).length : 0,
+    commentTotal: props.post.id in state.comments ?
+      Object.keys(state.comments[props.post.id])
+      .filter(commentKey => !state.comments[props.post.id][commentKey].deleted).length : 0,
     ...props
   })
 }

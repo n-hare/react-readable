@@ -30,7 +30,10 @@ const mapStateToProps = (state, props) => {
   const sortKey = state.ui.sortPostsByVotes ? 'voteScore' : 'timestamp'
   return ({
     categories: [{name: 'all', path: ''}, ...state.categories],
-    posts: Object.keys(state.posts).map(key=>state.posts[key]).filter(post => !post.deleted).sort((post1, post2) => (post2[sortKey] - post1[sortKey])),
+    posts: Object.keys(state.posts)
+      .map(key=>state.posts[key])
+      .filter(post => !post.deleted)
+      .sort((post1, post2) => (post2[sortKey] - post1[sortKey])),
     ...props
   })
 }

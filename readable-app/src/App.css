@@ -4,6 +4,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+*:focus {
+  outline-color: #7dd488;
+}
+
 .indexLink{
   color: #fff;
   text-decoration: none;
@@ -185,7 +189,6 @@ label + #postBody {
   font-weight: 900;
   margin-bottom: 0.65rem;
   min-width: 50vw;
-  outline: 0;
   padding: 0.65rem 0;
 }
 
@@ -212,5 +215,12 @@ label + #postBody {
 .post__controls a:hover
 {
   color: #7dd488;
+}
+
+/* Create Post Form Ends */
+
+/* Timestamp */
+.timestamp {
+  font-weight: 300;
 }
 

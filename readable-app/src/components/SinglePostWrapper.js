@@ -32,10 +32,10 @@ const mapStateToProps = (state, props) => {
     post: state.posts[props.post_id],
     comments: state.comments[props.post_id] ? Object.keys(state.comments[props.post_id])
       .map(key=>state.comments[props.post_id][key])
-      .filter(comment => !comment.deleted && !comment.parentDeleted) : [] ,
+      .filter(comment => !comment.deleted && !comment.parentDeleted)
+      .sort((comment1, comment2) => (comment2.voteScore - comment1.voteScore)) : [] ,
     ...props
   })
 }
-
 
 export default connect(mapStateToProps)(SinglePostWrapper);

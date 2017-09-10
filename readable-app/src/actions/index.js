@@ -71,9 +71,10 @@ export function createComment({id, parentid, timestamp, body, author, voteScore 
   }
 }
 
-export function deleteComment(id) {
+export function deleteComment(parentid, id) {
   return {
     type: DELETE_COMMENT,
+    parentid,
     id
   }
 }
