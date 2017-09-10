@@ -1,8 +1,8 @@
-import React from 'react';
-import shortid from 'shortid';
-import { connect } from 'react-redux';
+import React from 'react'
+import shortid from 'shortid'
+import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { createPost } from '../actions/index';
+import { createPost } from '../actions/index'
 import { postData } from '../utils/apiHelpers'
 
 class CreatePost extends React.Component {
@@ -21,7 +21,7 @@ class CreatePost extends React.Component {
       category:category.value,
       voteScore:  this.props.post.voteScore || 0,
       deleted: false
-    };
+    }
     this.postForm.reset();
     postData('/posts', JSON.stringify(postDetails))
     this.props.dispatch(createPost(postDetails))
@@ -33,27 +33,27 @@ class CreatePost extends React.Component {
     return (
       <div>
         <h2>{this.props.title} Post</h2>
-        <form className='post__form' onSubmit={(evt) => this.submitPostForm(evt) } ref={(postForm) => {this.postForm = postForm}}>
+        <form className='post__form' onSubmit={(evt) => this.submitPostForm(evt) } ref={ (postForm) => { this.postForm = postForm } }>
           <div className='post__form__row'>
             <label htmlFor='title'>Title</label>
-            <input type='text' name='title' id='title' defaultValue={post.title || ''} required />
+            <input type='text' name='title' id='title' defaultValue={ post.title || '' } required />
           </div>
           <div className='post__form__row'>
             <label htmlFor='postBody' >Post</label>
-            <textarea name='body' id='postBody' defaultValue={post.body || ''} required ></textarea>
+            <textarea name='body' id='postBody' defaultValue={ post.body || '' } required ></textarea>
           </div>
           <div className='post__form__row'>
             <label htmlFor='author' >Author</label>
-            <input type='text' name='author' id='author' defaultValue={post.author || ''} required />
+            <input type='text' name='author' id='author' defaultValue={ post.author || '' } required />
           </div>
           <div className='post__form__row'>
             <label htmlFor='category' >Category</label>
-            <select name='category' id='category' defaultValue={post.category || 'react'}>
-              {this.props.categories.map(cat => <option value={cat.name} key={cat.name} >{cat.name}</option>)}
+            <select name='category' id='category' defaultValue={ post.category || 'react' }>
+              {this.props.categories.map(cat => <option value={ cat.name } key={ cat.name } >{ cat.name }</option>)}
             </select>
           </div>
           <div className='post__form__row'>
-            <input type='submit' className='button__submit' value={`${this.props.title} Post`} />
+            <input type='submit' className='button__submit' value={ `${this.props.title} Post` } />
           </div>
         </form>
       </div>
@@ -61,9 +61,7 @@ class CreatePost extends React.Component {
   }
 }
 
-
 const mapStateToProps = (state, props) => {
-
   return ({
     categories: state.categories,
     post: state.posts[props.post_id] || '',
