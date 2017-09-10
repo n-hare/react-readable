@@ -4,7 +4,9 @@ import { createComment, updateUI } from '../actions/index'
 import shortid from 'shortid'
 
 class CreateComment extends React.Component {
-    submitCommentForm = (evt) =>{
+
+
+  submitCommentForm = (evt) =>{
     evt.preventDefault();
     const { commentBody, commentAuthor } = this.commentForm,
     timestamp = Date.now(),
@@ -17,11 +19,14 @@ class CreateComment extends React.Component {
       author:commentAuthor.value,
       voteScore: this.props.editComment.voteScore || 0
     };
-    this.commentForm.reset();
+    this.commentForm.reset()
     this.props.dispatch(createComment(commentDetails))
     this.props.dispatch(updateUI('editComment', {} ))
   }
-
+  componentWillUnmount() {
+    this.commentForm.reset()
+    this.props.dispatch(updateUI('editComment', {} ))
+  }
   render() {
     return (
       <form id='commentForm' className='post__form' ref={ (commentForm) => {this.commentForm = commentForm}} onSubmit={ (evt) => this.submitCommentForm(evt) } >
@@ -45,7 +50,8 @@ class CreateComment extends React.Component {
 const mapStateToProps = (state, props) => {
 
   return ({
-    editComment: state.ui.editComment
+    editComment: state.ui.editComment,
+    ...props
   })
 }
 
