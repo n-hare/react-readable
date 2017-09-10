@@ -3,7 +3,7 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TiPencil, TiTrash} from 'react-icons/lib/ti'
-import { deleteComment } from '../actions/index';
+import { deleteComment, updateUI } from '../actions/index';
 import Vote from './Vote'
 
 const Comment = ({comment, dispatch}) => {
@@ -17,12 +17,14 @@ const Comment = ({comment, dispatch}) => {
         </div>
         <ul className='post__controls'>
           <li>
-            <Link to={'#commentForm'}>
+            <Link to={'#commentForm'} onClick={() => {
+              dispatch(updateUI('editComment', comment))
+            }}>
               <TiPencil />&nbsp;
               Edit
             </Link>
           </li>
-          <li onClick={ ()=>{
+          <li onClick={ () => {
             dispatch(deleteComment(comment.parentid, comment.id))
           }}>
             <TiTrash />&nbsp;

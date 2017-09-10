@@ -4,9 +4,10 @@ export const DELETE_POST = 'DELETE_POST'
 export const CAST_VOTE = 'CAST_VOTE'
 export const CREATE_COMMENT = 'CREATE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_PARENT = 'DELETE_PARENT'
 export const CREATE_CATEGORY = 'CREATE_CATEGORY'
-export const SORT_BY = 'SORT_BY'
+export const UPDATE_UI = 'UPDATE_UI'
 
 //User Post Actions
 export function createPost({id, timestamp, title, body, author, category, voteScore = 0, deleted= false }) {
@@ -86,6 +87,7 @@ export function deleteParent(parentid) {
   }
 }
 
+
 //Category Actions
 export function createCategory(category) {
   return {
@@ -99,7 +101,7 @@ export const getCategories = () => dispatch => (
 )
 
 //UI Actions
-export const updateUI = (ui, bool) => ( {type: SORT_BY, ui, bool} )
+export const updateUI = (ui, payload) => ( { type: UPDATE_UI, ui, payload } )
 
 
 

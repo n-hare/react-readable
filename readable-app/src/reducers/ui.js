@@ -1,11 +1,11 @@
-import { SORT_BY } from '../actions'
+import { UPDATE_UI } from '../actions'
 
-function ui(state={sortPostsByVotes: true}, action) {
+function ui(state={sortPostsByVotes: true, editComment: {} }, action) {
   switch (action.type) {
-    case SORT_BY:
+    case UPDATE_UI:
       return {
-      ...state,
-      [action.ui]: action.bool
+        ...state,
+        [action.ui]: action.payload
       }
     default:
       return state

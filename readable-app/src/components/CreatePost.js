@@ -11,9 +11,9 @@ class CreatePost extends React.Component {
     evt.preventDefault()
     const { title, body, author, category } = this.postForm,
     timestamp = Date.now(),
-    id = shortid.generate()
+    id = this.props.post.id || shortid.generate()
     const postDetails= {
-      id: this.props.post.id || id,
+      id,
       timestamp:timestamp,
       title: title.value,
       body:body.value,
@@ -36,15 +36,15 @@ class CreatePost extends React.Component {
         <form className='post__form' onSubmit={(evt) => this.submitPostForm(evt) } ref={(postForm) => {this.postForm = postForm}}>
           <div className='post__form__row'>
             <label htmlFor='title'>Title</label>
-            <input type='text' name='title' id='title' defaultValue={post.title || ''}/>
+            <input type='text' name='title' id='title' defaultValue={post.title || ''} required />
           </div>
           <div className='post__form__row'>
             <label htmlFor='postBody' >Post</label>
-            <textarea name='body' id='postBody' defaultValue={post.body || ''}></textarea>
+            <textarea name='body' id='postBody' defaultValue={post.body || ''} required ></textarea>
           </div>
           <div className='post__form__row'>
             <label htmlFor='author' >Author</label>
-            <input type='text' name='author' id='author' defaultValue={post.author || ''}/>
+            <input type='text' name='author' id='author' defaultValue={post.author || ''} required />
           </div>
           <div className='post__form__row'>
             <label htmlFor='category' >Category</label>
