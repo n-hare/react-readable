@@ -21,7 +21,7 @@ class SinglePostWrapper extends React.Component {
         <Link to='/' className='btn' >Back Home</Link>
         <h2 id='commets'>Comments</h2>
         { this.props.comments.length > 0 ? this.props.comments.map(comment => <Comment comment={comment} key={comment.id} />) : <h3>Be the first to comment!</h3>}
-        <CreateComment parentid={this.props.post_id}/>
+        <CreateComment parentId={this.props.post_id}/>
       </div>
     )
   }

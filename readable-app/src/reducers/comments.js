@@ -5,11 +5,11 @@ function comments(state = {}, action) {
     case CREATE_COMMENT:
       return {
         ...state,
-        [action.parentid]: {
-          ...state[action.parentid],
+        [action.parentId]: {
+          ...state[action.parentId],
           [action.id]: {
             id: action.id,
-            parentid: action.parentid,
+            parentId: action.parentId,
             timestamp: action.timestamp,
             body: action.body,
             author: action.author,
@@ -22,24 +22,24 @@ function comments(state = {}, action) {
     case DELETE_COMMENT:
       return {
         ...state,
-        [action.parentid]: {
-          ...state[action.parentid],
+        [action.parentId]: {
+          ...state[action.parentId],
           [action.id]: {
-            ...state[action.parentid][action.id],
+            ...state[action.parentId][action.id],
             deleted: true
           }
         }
       }
     case DELETE_PARENT:
-      const comments = [action.parentid] in state ? Object.keys(state[action.parentid]) : 0
+      const comments = [action.parentId] in state ? Object.keys(state[action.parentId]) : 0
       if (comments.length > 0) {
-        const updateChildComments = Object.keys(state[action.parentid]).reduce((prev, current)=>{
-          prev[current] = {...state[action.parentid][current], parentDeleted: true}
+        const updateChildComments = Object.keys(state[action.parentId]).reduce((prev, current)=>{
+          prev[current] = {...state[action.parentId][current], parentDeleted: true}
           return prev
         },{})
         return {
           ...state,
-          [action.parentid]: updateChildComments
+          [action.parentId]: updateChildComments
         }
       }else{
         return state

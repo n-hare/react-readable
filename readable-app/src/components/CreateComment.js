@@ -1,7 +1,9 @@
 import React from 'react'
+import shortid from 'shortid'
 import { connect } from 'react-redux'
 import { createComment, updateUI } from '../actions/index'
-import shortid from 'shortid'
+import { postData } from '../utils/apiHelpers'
+
 
 class CreateComment extends React.Component {
 
@@ -13,13 +15,14 @@ class CreateComment extends React.Component {
     id = this.props.editComment.id || shortid.generate()
     const commentDetails= {
       id: id,
-      parentid: this.props.parentid,
+      parentId: this.props.parentId,
       timestamp,
       body:commentBody.value,
       author:commentAuthor.value,
       voteScore: this.props.editComment.voteScore || 0
     };
     this.commentForm.reset()
+    postData('/comments', JSON.stringify(commentDetails))
     this.props.dispatch(createComment(commentDetails))
     this.props.dispatch(updateUI('editComment', {} ))
   }

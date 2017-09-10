@@ -39,7 +39,11 @@ export const deletePostAPI = (id) => dispatch => (
 
 export const getPosts = (path = '/posts') => dispatch => (
   getData(path)
-  .then(posts => posts.map(post=>dispatch(createPost(post))))
+  .then(posts => posts.map(post=> {
+    getData(`/posts/${post.id}/comments`)
+    .then(comments => comments.map(comment => dispatch(createComment(comment))))
+    return dispatch(createPost(post))
+  }))
 )
 
 //Vote Actions
@@ -60,11 +64,11 @@ export const postVote = (id, vote) => dispatch => {
 }
 
 //Comment Actions
-export function createComment({id, parentid, timestamp, body, author, voteScore = 0 }) {
+export function createComment({id, parentId, timestamp, body, author, voteScore = 0 }) {
   return {
     type: CREATE_COMMENT,
     id,
-    parentid,
+    parentId,
     timestamp,
     body,
     author,
@@ -72,18 +76,23 @@ export function createComment({id, parentid, timestamp, body, author, voteScore 
   }
 }
 
-export function deleteComment(parentid, id) {
+export function deleteComment(parentId, id) {
   return {
     type: DELETE_COMMENT,
-    parentid,
+    parentId,
     id
   }
 }
 
-export function deleteParent(parentid) {
+export const deleteCommentAPI = (parentId, id) => dispatch => (
+  deleteData(`/comments/${id}`)
+    .then(() => dispatch(deleteComment(parentId, id)))
+)
+
+export function deleteParent(parentId) {
   return {
     type: DELETE_PARENT,
-    parentid
+    parentId
   }
 }
 

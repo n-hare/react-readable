@@ -3,7 +3,7 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TiPencil, TiTrash} from 'react-icons/lib/ti'
-import { deleteComment, updateUI } from '../actions/index';
+import { deleteCommentAPI, updateUI } from '../actions/index';
 import Vote from './Vote'
 
 const Comment = ({comment, dispatch}) => {
@@ -25,7 +25,7 @@ const Comment = ({comment, dispatch}) => {
             </Link>
           </li>
           <li onClick={ () => {
-            dispatch(deleteComment(comment.parentid, comment.id))
+            dispatch(deleteCommentAPI(comment.parentId, comment.id))
           }}>
             <TiTrash />&nbsp;
             Delete
@@ -36,6 +36,6 @@ const Comment = ({comment, dispatch}) => {
   )
 }
 
-
-
 export default connect()(Comment)
+
+
