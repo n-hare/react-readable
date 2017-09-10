@@ -23,6 +23,11 @@ class CreateComment extends React.Component {
     this.props.dispatch(createComment(commentDetails))
     this.props.dispatch(updateUI('editComment', {} ))
   }
+
+  componentDidMount() {
+    this.commentForm.reset() //won't display defaultValue without a reset
+  }
+
   componentWillUnmount() {
     this.commentForm.reset()
     this.props.dispatch(updateUI('editComment', {} ))

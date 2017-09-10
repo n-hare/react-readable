@@ -26,8 +26,8 @@ const Post = ({dispatch, post, commentTotal}) => {
             </Link>
           </li>
           <li>
-            <TiTag />&nbsp;
             <Link to={`/${post.category}`}>
+              <TiTag />&nbsp;
               {post.category}
             </Link>
           </li>

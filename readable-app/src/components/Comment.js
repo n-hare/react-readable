@@ -16,10 +16,10 @@ const Comment = ({comment, dispatch}) => {
           <p>{ comment.body }</p>
         </div>
         <ul className='post__controls'>
-          <li>
-            <Link to={'#commentForm'} onClick={() => {
+          <li onClick={() => {
               dispatch(updateUI('editComment', comment))
             }}>
+            <Link to='#commentForm'>
               <TiPencil />&nbsp;
               Edit
             </Link>
