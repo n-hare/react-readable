@@ -10,7 +10,7 @@ import Vote from './Vote'
 const Post = ({dispatch, post, commentTotal}) => {
   return (
     <article className='post__container'>
-      <Vote voteScore={post.voteScore || 0} post_id={post.id} />
+      <Vote voteScore={ post.voteScore || 0 } item_id={ post.id } item_type='posts' />
       <div className='post__main'>
         <div>
           <Link to={`/${post.category}/${post.id}`} className='post__title'>

@@ -1,4 +1,4 @@
-import {CREATE_COMMENT, DELETE_COMMENT, DELETE_PARENT } from '../actions'
+import {CREATE_COMMENT, DELETE_COMMENT, DELETE_PARENT, CAST_VOTE_COMMENT } from '../actions'
 
 function comments(state = {}, action) {
   switch (action.type) {
@@ -19,6 +19,7 @@ function comments(state = {}, action) {
           }
         }
       }
+
     case DELETE_COMMENT:
       return {
         ...state,
@@ -30,6 +31,7 @@ function comments(state = {}, action) {
           }
         }
       }
+
     case DELETE_PARENT:
       const comments = [action.parentId] in state ? Object.keys(state[action.parentId]) : 0
       if (comments.length > 0) {
@@ -44,6 +46,19 @@ function comments(state = {}, action) {
       }else{
         return state
       }
+
+    case CAST_VOTE_COMMENT:
+      return {
+        ...state,
+        [action.parentId]: {
+          ...state[action.parentId],
+          [action.id]: {
+            ...state[action.parentId][action.id],
+            voteScore: state[action.parentId][action.id].voteScore + action.vote
+          }
+        }
+      }
+
     default:
       return state
   }
@@ -51,4 +66,4 @@ function comments(state = {}, action) {
 
 export default comments;
 
-// Help with Object.keys from https://stackoverflow.com/a/14810722
+// Help with Object.keys in DELETE_POST from  https://stackoverflow.com/a/14810722

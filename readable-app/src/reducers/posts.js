@@ -1,4 +1,4 @@
-import {CREATE_POST, DELETE_POST, CAST_VOTE } from '../actions'
+import {CREATE_POST, DELETE_POST, CAST_VOTE_POST } from '../actions'
 
 function posts(state = {}, action) {
   switch (action.type) {
@@ -16,6 +16,7 @@ function posts(state = {}, action) {
           deleted: action.deleted || false
         }
       }
+
     case DELETE_POST:
       return {
         ...state,
@@ -24,7 +25,8 @@ function posts(state = {}, action) {
           deleted: true
         }
       }
-    case CAST_VOTE:
+
+    case CAST_VOTE_POST:
       return {
         ...state,
         [action.id]: {
@@ -32,6 +34,7 @@ function posts(state = {}, action) {
           voteScore: state[action.id].voteScore + action.vote
         }
       }
+
     default:
       return state
   }

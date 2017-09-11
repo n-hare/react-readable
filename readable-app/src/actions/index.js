@@ -1,9 +1,10 @@
 import { deleteData, getData, postData } from '../utils/apiHelpers'
 export const CREATE_POST = 'CREATE_POST'
 export const DELETE_POST = 'DELETE_POST'
-export const CAST_VOTE = 'CAST_VOTE'
+export const CAST_VOTE_POST = 'CAST_VOTE_POST'
 export const CREATE_COMMENT = 'CREATE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const CAST_VOTE_COMMENT = 'CAST_VOTE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_PARENT = 'DELETE_PARENT'
 export const CREATE_CATEGORY = 'CREATE_CATEGORY'
@@ -47,19 +48,29 @@ export const getPosts = (path = '/posts') => dispatch => (
 )
 
 //Vote Actions
-export function castVote(id, vote) {
+export function castVotePost(id, vote) {
   return {
-    type: CAST_VOTE,
+    type: CAST_VOTE_POST,
     id,
     vote
   }
 }
 
-export const postVote = (id, vote) => dispatch => {
+export function castVoteComment(id, parentId, vote) {
+  return {
+    type: CAST_VOTE_COMMENT,
+    id,
+    parentId,
+    vote
+  }
+}
+
+export const postVote = (id, vote, type) => dispatch => {
   const option= {option: vote > 0 ? 'upVote' : 'downVote'}
   return (
-    postData(`/posts/${id}`, JSON.stringify(option))
-    .then(dispatch(castVote(id, vote)))
+    postData(`/${type}/${id.id}`, JSON.stringify(option))
+    .then(type === 'posts' ?
+      dispatch(castVotePost(id.id, vote)) : dispatch(castVoteComment(id.id, id.parentId, vote)))
   )
 }
 
