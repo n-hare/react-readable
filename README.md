@@ -1,4 +1,4 @@
-# Readable -nhare
+# Readable n-hare
 
 ## Application Install
 
